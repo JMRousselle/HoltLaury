@@ -1,0 +1,11 @@
+*.pyc
+*.log
+.svn
+.idea
+.ipynb_checkpoints
+*.ipynb
+*.sqlite
+dist
+*new.po
+Thumbs.db
+

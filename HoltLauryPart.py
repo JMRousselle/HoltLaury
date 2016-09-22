@@ -38,7 +38,7 @@ class PartieHL(Partie):
 #        self._histo_build[le2mtrans(u"Period\npayoff")] = "HL_periodpayoff"
 #        self._histo_build[le2mtrans(u"Cumulative\npayoff")] = "HL_cumulativepayoff"
 #        self._histo_content = [list(self._histo_build.viewkeys())]
-        self.periods = {}
+#        self.periods = {}
         self._currentperiod = None
 
     @property
