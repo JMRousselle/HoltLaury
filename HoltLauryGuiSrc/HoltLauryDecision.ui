@@ -257,7 +257,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -387,7 +387,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -517,7 +517,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -647,7 +647,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -777,7 +777,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -907,7 +907,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -1037,7 +1037,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -1167,7 +1167,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -1297,7 +1297,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
@@ -1430,13 +1430,13 @@
           <set>Qt::ImhDigitsOnly</set>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>
          </property>
          <property name="cursorPosition">
-          <number>1</number>
+          <number>0</number>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -1563,7 +1563,7 @@
           </font>
          </property>
          <property name="text">
-          <string>?</string>
+          <string/>
          </property>
          <property name="maxLength">
           <number>1</number>

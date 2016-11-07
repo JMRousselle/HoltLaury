@@ -85,10 +85,14 @@ Vous devez pour cela saisir 'A' ou 'B' dans la zone de texte correspondant à la
             self.ui.pushButton_valider.setEnabled(True)
             return        
         if not self._automatique:
-            confirmation = QtGui.QMessageBox.question(self, u"Confirmation", u"Vous confirmez vos choix?", \
-            QtGui.QMessageBox.No | QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+#            confirmation = QtGui.QMessageBox.question(self, u"Confirmation", u"Confirmez-vous vos choix ?", \
+#            QtGui.QMessageBox.No | QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            confirmation = QtGui.QMessageBox.question(
+                self, texts.DECISION_confirmation.titre,
+                texts.DECISION_confirmation.message,
+                QtGui.QMessageBox.No | QtGui.QMessageBox.Yes
+            )
             if confirmation != QtGui.QMessageBox.Yes: 
-                self.ui.pushButton_valider.setEnabled(True)
                 return
         self._defered.callback(decision)
         self.accept()

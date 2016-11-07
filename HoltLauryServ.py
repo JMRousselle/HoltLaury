@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from util import utiltools
 import HoltLauryParams as pms
 
+import random
 
 logger = logging.getLogger("le2m.{}".format(__name__))
 
@@ -28,7 +29,7 @@ class Serveur(object):
         actions[u"Démarrer"] = lambda _: self._demarrer()
         actions[u"Afficher les gains"] = \
             lambda _: self._le2mserv.gestionnaire_experience.\
-            display_payoffs("HoltLaury")
+            display_payoffs_onserver("HoltLaury")
         self._le2mserv.gestionnaire_graphique.add_topartmenu(
             u"Holt et Laury", actions)
 
@@ -94,7 +95,13 @@ class Serveur(object):
             # period payoffs
             self._le2mserv.gestionnaire_experience.compute_periodpayoffs(
                 "HoltLaury")
-        
+
+#        # tirage question rémunérée
+##        self._main_server.log_listeClient(u"Question tirée")
+#        for j in self._tous:
+#            j.currentperidod.HL_question_tiree = random.randint(1,  11)
+##            self._main_server.log_listeClient(u"{}: {}".format(j.joueur,  j.question_tiree))
+
             # summary
 #            yield(self._le2mserv.gestionnaire_experience.run_step(
 #                u"Récapitulatif", self._tous, "display_summary"))

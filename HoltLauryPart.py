@@ -14,6 +14,7 @@ from util.utiltools import get_module_attributes
 import HoltLauryParams as pms
 import HoltLauryTexts as texts
 
+import random
 
 logger = logging.getLogger("le2m")
 
@@ -133,21 +134,46 @@ class PartieHL(Partie):
         Compute the payoff of the part
         :return:
         """
-        logger.debug(u"{} Part Payoff".format(self.joueur))
-        # gain partie
-        self.HL_gain_ecus = self.currentperiod.HL_cumulativepayoff
-        self.HL_gain_euros = \
-            float(self.HL_gain_ecus) * float(pms.TAUX_CONVERSION)
+#        logger.debug(u"{} Part Payoff".format(self.joueur))
+#        # gain partie
+#        self.HL_gain_ecus = self.currentperiod.HL_cumulativepayoff
+#        self.HL_gain_euros = \
+#            float(self.HL_gain_ecus) * float(pms.TAUX_CONVERSION)
+#
+#        # texte final
+#        self._texte_final = texts.get_texte_final(
+#            self.HL_gain_ecus,
+#            self.HL_gain_euros)
+#
+#        logger.debug(u"{} Final text {}".format(self.joueur, self._texte_final))
+#        logger.info(u'{} Payoff ecus {} Payoff euros {:.2f}'.format(
+#            self.joueur, self.HL_gain_ecus, self.HL_gain_euros))
 
-        # texte final
-        self._texte_final = texts.get_texte_final(
-            self.HL_gain_ecus,
-            self.HL_gain_euros)
-
-        logger.debug(u"{} Final text {}".format(self.joueur, self._texte_final))
-        logger.info(u'{} Payoff ecus {} Payoff euros {:.2f}'.format(
-            self.joueur, self.HL_gain_ecus, self.HL_gain_euros))
-
+        logger.debug(u"call of calculer_gain_partie") 
+        self.HL_gain_ecus = 0
+        self.currentperiod.HL_question_tiree = random.randint(1,  11)
+        self.tirage = random.randint(1, 100)
+        self.currentperiod.HL_tirage = self.tirage 
+        option_choisie = getattr(self.currentperiod, 'HL_question_{}'.format(self.currentperiod.HL_question_tiree))
+        proba_gauche_question_tiree = pms.PROBAS[self.currentperiod.HL_question_tiree - 1][0]
+        if option_choisie == pms.OPTION_A: 
+            self.HL_gain_ecus = self.tirage <= proba_gauche_question_tiree and pms.GAIN_OPTION_A[0] or pms.GAIN_OPTION_A[1] 
+        else: 
+            self.HL_gain_ecus = self.tirage <= proba_gauche_question_tiree and pms.GAIN_OPTION_B[0] or pms.GAIN_OPTION_B[1]
+        self.HL_gain_euros = float(self.HL_gain_ecus) * float(pms.TAUX_CONVERSION)
+        self.texte_final = u"C'est la question {} qui a été tirée au sort pour votre rémunération. A cette question vous avez choisi \
+l'option {}. Le nombre tiré au sort par l'ordinateur est {}.".format(self.currentperiod.HL_question_tiree ,  option_choisie == 0 and u'A' or u'B',  self.tirage)
+        self.texte_final += u"\nVotre gain est donc de "
+        if len(pms.MONNAIE) == 1:
+            self.texte_final += u"{} {}.".format(self.HL_gain_euros,  \
+                        self.HL_gain_euros > 1 and "{}s".format(pms.MONNAIE) or pms.MONNAIE)
+        else:
+            self.texte_final += u"{} {} soit {} {}.".format(self.HL_gain_ecus,  \
+                        self.HL_gain_ecus > 1 and "{}s".format(pms.MONNAIE) or pms.MONNAIE,  \
+                        self.HL_gain_euros,  \
+                        self.HL_gain_euros > 1 and "{}s".format(pms.MONNAIE) or pms.MONNAIE)
+        logger.debug(u"Texte final: {}".format(self.texte_final))
+        logger.info('{}: gain ecus:{}, gain euros: {:.2f}'.format(self.joueur, self.HL_gain_ecus, self.HL_gain_euros))
 
 class RepetitionsHL(Base):
     __tablename__ = 'partie_HoltLaury_repetitions'

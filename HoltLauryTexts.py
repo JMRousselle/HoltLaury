@@ -38,7 +38,7 @@ DECISION_erreur = TITLE_MSG(
     u"Warning message")
 DECISION_confirmation = TITLE_MSG(
     u"Confirmation",
-    u"Confirmation message")
+    u"Confirmez-vous vos choix ?")
 
 
 # ECRAN RECAPITULATIF ==========================================================
