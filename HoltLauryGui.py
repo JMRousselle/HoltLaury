@@ -70,7 +70,7 @@ Vous devez pour cela saisir 'A' ou 'B' dans la zone de texte correspondant à la
         pass
     
     def _accept(self):
-        self.ui.pushButton_valider.setEnabled(False)
+#        self.ui.pushButton_valider.setEnabled(False)
         decision = {}        
         try:
             for i in range(11):
